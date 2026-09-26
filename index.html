@@ -1,33 +1,482 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vente des Pionniers Saint-Paul</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vente de vins | Pionniers Saint-Paul 51ème</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f5f0;
+  color: #222;
+}
+
+header {
+  background: #173d2d;
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 10px;
+  font-size: 42px;
+}
+
+header p {
+  font-size: 19px;
+}
+
+.deadline {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 18px;
+  background: white;
+  color: #173d2d;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 35px 20px;
+}
+
+.intro {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+h2 {
+  margin-top: 45px;
+  color: #173d2d;
+}
+
+.category {
+  margin-bottom: 45px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.product {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+}
+
+.product h3 {
+  font-size: 17px;
+  margin-top: 0;
+  min-height: 42px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #173d2d;
+}
+
+.case-price {
+  color: #666;
+  font-size: 14px;
+}
+
+.quantity {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.quantity button {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: #173d2d;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.quantity span {
+  font-weight: bold;
+  min-width: 75px;
+  text-align: center;
+}
+
+.cart {
+  margin-top: 50px;
+  background: #173d2d;
+  color: white;
+  padding: 30px;
+  border-radius: 18px;
+}
+
+.cart h2 {
+  color: white;
+  margin-top: 0;
+}
+
+#cartItems {
+  line-height: 1.7;
+}
+
+.total {
+  font-size: 27px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.order-form {
+  background: white;
+  margin-top: 30px;
+  padding: 30px;
+  border-radius: 18px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  padding: 13px;
+  margin: 7px 0 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.payment {
+  margin: 20px 0;
+}
+
+.payment label {
+  display: block;
+  padding: 8px 0;
+}
+
+.bank {
+  background: #f2f2f2;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 15px 0;
+}
+
+.submit {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 10px;
+  background: #173d2d;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.notice {
+  font-size: 14px;
+  color: #666;
+}
+
+@media(max-width:600px) {
+  header h1 {
+    font-size: 31px;
+  }
+
+  header {
+    padding: 40px 15px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <h1>Vente des Pionniers Saint-Paul</h1>
+<header>
+  <h1>Vente de vins</h1>
+  <p>Poste Pionnier Saint-Paul 51ème</p>
+  <div class="deadline">Commandes jusqu'au 15 novembre</div>
+</header>
 
+<main>
+
+<section class="intro">
+  <h2>Notre projet</h2>
   <p>
-    Soutenez notre projet Pionniers en participant à notre grande vente !
+    Nous sommes une unité pionnier qui avons pour projet de partir à
+    l'étranger réaliser un projet humanitaire pour des personnes dans le
+    besoin. C'est dans ce cadre que nous organisons ces ventes afin de
+    financer notre projet.
   </p>
 
-  <h2>Nos produits</h2>
+  <strong>Les vins sont commandés par lots de 6 bouteilles.</strong>
+</section>
 
-  <h3>🍷 Vin</h3>
-  <p>Découvrez prochainement notre sélection de vins.</p>
+<div id="catalogue"></div>
 
-  <h3>🐟 Saumon</h3>
-  <p>Commandez votre saumon pour les fêtes.</p>
+<section class="cart">
+  <h2>Votre panier</h2>
+  <div id="cartItems">Votre panier est vide.</div>
+  <div class="total">
+    Total : <span id="total">0,00</span> €
+  </div>
+</section>
 
-  <h3>🌲 Sapins</h3>
-  <p>Réservez votre sapin de Noël.</p>
+<section class="order-form">
 
-  <h2>Commander</h2>
+<h2>Finaliser ma commande</h2>
 
-  <p>Les commandes seront bientôt disponibles ici.</p>
+<label>Prénom</label>
+<input type="text" id="firstname">
+
+<label>Nom</label>
+<input type="text" id="lastname">
+
+<label>Adresse e-mail</label>
+<input type="email" id="email">
+
+<label>Téléphone</label>
+<input type="tel" id="phone">
+
+<div class="payment">
+
+<h3>Mode de paiement</h3>
+
+<label>
+<input type="radio" name="payment" value="Virement">
+Virement bancaire
+</label>
+
+<label>
+<input type="radio" name="payment" value="Sur place">
+Paiement sur place
+</label>
+
+</div>
+
+<div class="bank">
+<strong>Paiement par virement</strong><br><br>
+Nom : XXXX<br>
+IBAN : BEXXXXXX
+</div>
+
+<p class="notice">
+Votre commande n'est pas encore envoyée : nous connecterons ensuite
+ce formulaire à notre système d'enregistrement des commandes.
+</p>
+
+<button class="submit" onclick="validateOrder()">
+Confirmer ma commande
+</button>
+
+</section>
+
+</main>
+
+<script>
+
+const wines = [
+
+{cat:"Vins rouges",name:"Château Ermite d'Auzan, Costières de Nîmes, bio 2023",base:9.6},
+{cat:"Vins rouges",name:"La Bergerie de Lastours, Corbières, bio 2023",base:11.9},
+{cat:"Vins rouges",name:"Ch. Mayne Boyer Chaumet, Blaye, Bio 2022",base:9.3},
+{cat:"Vins rouges",name:"Ch. Croix St Georges, St Georges St Emilion 2022",base:15.4},
+{cat:"Vins rouges",name:"Château de le Pierre, Brouilly 2023",base:17.5},
+{cat:"Vins rouges",name:"Château Rochemorin, Pessac Léognan 2020",base:22.4},
+{cat:"Vins rouges",name:"Saint Nicolas de Bourgueil, Dom. Taluau, cuvée Expression 2024",base:12.3},
+{cat:"Vins rouges",name:"Côtes du Rhône, Saint Esprit, Delas 2023",base:12.5},
+{cat:"Vins rouges",name:"Mas Andes Reserva, Carmenere, Chili 2024",base:8.6},
+{cat:"Vins rouges",name:"Primitivo, Vecchia Torre, Puglia 2021",base:9.9},
+{cat:"Vins rouges",name:"Ottoventi, Punto 20, Nero d'Avola, Sicile, Bio 2022",base:13.3},
+
+{cat:"Vins blancs",name:"Château Ermite d'Auzan, Costières de Nîmes, bio 2024",base:9.6},
+{cat:"Vins blancs",name:"Chardonnay de Pennautier, Pays d'Oc 2024",base:9.9},
+{cat:"Vins blancs",name:"La Bergerie de Lastours, Corbières, bio 2024",base:11.9},
+{cat:"Vins blancs",name:"Ch. Bonnet, Entre-deux-Mers 2024",base:11.4},
+{cat:"Vins blancs",name:"Pouilly Fumé, domaine Dezat 2024",base:18.7},
+{cat:"Vins blancs",name:"Saint Véran, domaine Martin 2024",base:17.5},
+{cat:"Vins blancs",name:"Sourire de Cyrano, Bergerac Moelleux 2024",base:7.9},
+
+{cat:"Vins rosés",name:"Dune, Gris de gris, Sable de Camargue 2024",base:8.8},
+{cat:"Vins rosés",name:"Saint Max, Côtes de Provence 2024",base:15.4},
+
+{cat:"Mousseux",name:"Duc de Joyal, Brut",base:8.7},
+{cat:"Mousseux",name:"Langlois, Crémant de Loire",base:19.3},
+
+{cat:"Sans alcool",name:"Pierre Zéro cuvée Signature, Chardonnay",base:9.3},
+{cat:"Sans alcool",name:"Pierre Zéro, Mousseux, Chardonnay",base:7.7},
+{cat:"Sans alcool",name:"Pierre Zéro, Spritz",base:8.7}
+
+];
+
+const quantities = new Array(wines.length).fill(0);
+
+function price(base) {
+  return Math.round(base * 1.30 * 100) / 100;
+}
+
+function euro(number) {
+  return number.toLocaleString("fr-BE", {
+    minimumFractionDigits:2,
+    maximumFractionDigits:2
+  });
+}
+
+function renderCatalogue() {
+
+  const catalogue = document.getElementById("catalogue");
+
+  const categories = [...new Set(wines.map(w => w.cat))];
+
+  categories.forEach(category => {
+
+    const section = document.createElement("section");
+    section.className = "category";
+
+    section.innerHTML =
+      `<h2>${category}</h2><div class="products"></div>`;
+
+    const container = section.querySelector(".products");
+
+    wines.forEach((wine,index) => {
+
+      if(wine.cat !== category) return;
+
+      const p = price(wine.base);
+
+      const card = document.createElement("div");
+      card.className = "product";
+
+      card.innerHTML = `
+        <h3>${wine.name}</h3>
+
+        <div class="price">
+          ${euro(p)} € / bouteille
+        </div>
+
+        <div class="case-price">
+          Lot de 6 : ${euro(p*6)} €
+        </div>
+
+        <div class="quantity">
+          <button onclick="changeQuantity(${index},-6)">−</button>
+
+          <span id="qty-${index}">
+            0 bouteille
+          </span>
+
+          <button onclick="changeQuantity(${index},6)">+</button>
+        </div>
+      `;
+
+      container.appendChild(card);
+
+    });
+
+    catalogue.appendChild(section);
+
+  });
+
+}
+
+function changeQuantity(index,change) {
+
+  quantities[index] += change;
+
+  if(quantities[index] < 0)
+    quantities[index] = 0;
+
+  document.getElementById("qty-"+index).textContent =
+    quantities[index] + " bouteilles";
+
+  updateCart();
+}
+
+function updateCart() {
+
+  const cart = document.getElementById("cartItems");
+
+  let html = "";
+  let total = 0;
+
+  wines.forEach((wine,index) => {
+
+    if(quantities[index] > 0) {
+
+      const subtotal =
+        quantities[index] * price(wine.base);
+
+      total += subtotal;
+
+      html += `
+      <div>
+        ${quantities[index]} × ${wine.name}
+        — <strong>${euro(subtotal)} €</strong>
+      </div>`;
+    }
+
+  });
+
+  cart.innerHTML =
+    html || "Votre panier est vide.";
+
+  document.getElementById("total").textContent =
+    euro(total);
+
+}
+
+function validateOrder() {
+
+  const firstname =
+    document.getElementById("firstname").value.trim();
+
+  const lastname =
+    document.getElementById("lastname").value.trim();
+
+  if(!firstname || !lastname) {
+    alert("Merci d'indiquer votre prénom et votre nom.");
+    return;
+  }
+
+  if(!quantities.some(q => q > 0)) {
+    alert("Votre panier est vide.");
+    return;
+  }
+
+  const payment =
+    document.querySelector('input[name="payment"]:checked');
+
+  if(!payment) {
+    alert("Merci de choisir un mode de paiement.");
+    return;
+  }
+
+  alert(
+    "La boutique fonctionne ! Étape suivante : enregistrer réellement la commande."
+  );
+
+}
+
+renderCatalogue();
+
+</script>
 
 </body>
 </html>
